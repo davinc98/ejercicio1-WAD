@@ -55,9 +55,40 @@ public class MostrarDatosCategoria extends HttpServlet {
             out.println("<body>");
 
             out.println("<center>");
+            out.println("<div class='container'>");
+
+            out.println("<br/>");
+            out.println(" <div class=\"nav nav-pills nav-fill\">\n"
+                    + "            <ul class=\"nav justify-content-end\">\n"
+                    + "                <li class=\"nav-item\">\n"
+                    + "                    <a class=\"nav-link \"  href=\"index.html\">Inicio</a>\n"
+                    + "                </li>\n"
+                    + "                <li class=\"nav-item\">\n"
+                    + "                    <a class=\"nav-link \"  href=\"TablasDeMultiplicar\">Tablas de Multiplicar</a>\n"
+                    + "                </li>\n"
+                    + "                <li class=\"nav-item\">\n"
+                    + "                    <a class=\"nav-link active\" aria-current=\"page\" href=\"MostrarDatosCategoria\">Listado de Categorias</a>\n"
+                    + "                </li>\n"
+                    + "                \n"
+                    + "                <li class=\"nav-item\">\n"
+                    + "                    <a class=\"nav-link\" href=\"categoriaForm.html\">Crear Categoria</a>\n"
+                    + "                </li>\n"
+                    + "                \n"
+                    + "                <li class=\"nav-item\">\n"
+                    + "                    <a class=\"nav-link\" href=\"ProductoController?accion=listaDeProductos\">Listado de Productos</a>\n"
+                    + "                </li>\n"
+                    + "                \n"
+                    + "                <li class=\"nav-item\">\n"
+                    + "                    <a class=\"nav-link\" href=\"ProductoController?accion=nuevo\">Crear Producto</a>\n"
+                    + "                </li>\n"
+                    + "                \n"
+                    + "            </ul>\n"
+                    + "        </div>");
+            out.println("<br/>");
+            out.println("<br/>");
+
             out.println("<h1>Lista de Categorias</h1>");
 
-            out.println("<div class='container'>");
             out.println("<table class=\"table table-bordered border-primary\">");
 
             out.println("<tr>");

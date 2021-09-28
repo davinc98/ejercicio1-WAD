@@ -18,8 +18,40 @@ and open the template in the editor.
     </head>
     <body>
     <center>
-        <h1>Crear Categoria</h1>
+        
         <div class="container">
+        <br/>
+        <div class="nav nav-pills nav-fill">
+            <ul class="nav justify-content-end">
+                <li class="nav-item">
+                    <a class="nav-link"  href="index.html">Inicio</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="TablasDeMultiplicar">Tablas de Multiplicar</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="MostrarDatosCategoria">Listado de Categorias</a>
+                </li>
+                
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="categoriaForm.html">Crear Categoria</a>
+                </li>
+                
+                <li class="nav-item">
+                    <a class="nav-link" href="ProductoController?accion=listaDeProductos">Listado de Productos</a>
+                </li>
+                
+                <li class="nav-item">
+                    <a class="nav-link" href="ProductoController?accion=nuevo">Crear Producto</a>
+                </li>
+                
+            </ul>
+        </div>
+        
+        <br/>
+        <br/>
+        <h1>Crear Categoria</h1>
+        
             <form name="frmDatos" method="post" action="AgregarCategoria"> 
                 Nombre Categoria: 
                 <input type="text" name="txtNombre" placeholder="Pon tu nombre aqui" required/><br/>
@@ -27,6 +59,7 @@ and open the template in the editor.
                 <input type="text" name="txtDescripcion" placeholder="Agrega una descripción" required/><br/>
                 <input type="submit" value="Enviar" name="btnEnviar"/>
             </form>
+            
         </div>
     </center>
 </body>

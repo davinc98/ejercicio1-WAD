@@ -41,17 +41,45 @@ public class TablasDeMultiplicar extends HttpServlet {
 
             out.println("<link href='https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css' rel='stylesheet'>");
             out.println("<script src='https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js'></script>");
-            
+
             out.println("<script src='https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js'></script>");
             out.println("<script src='https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.min.js'></script>");
 
-
             out.println("</head>");
             out.println("<body>");
-            
+
             out.println("<div class='container'>");
-            
             out.println("<center>");
+            out.println("<br/>");
+            out.println(" <div class=\"nav nav-pills nav-fill\">\n"
+                    + "            <ul class=\"nav justify-content-end\">\n"
+                    + "                <li class=\"nav-item\">\n"
+                    + "                    <a class=\"nav-link \"  href=\"index.html\">Inicio</a>\n"
+                    + "                </li>\n"
+                    + "                <li class=\"nav-item\">\n"
+                    + "                    <a class=\"nav-link active\" aria-current=\"page\" href=\"TablasDeMultiplicar\">Tablas de Multiplicar</a>\n"
+                    + "                </li>\n"
+                    + "                <li class=\"nav-item\">\n"
+                    + "                    <a class=\"nav-link\" href=\"MostrarDatosCategoria\">Listado de Categorias</a>\n"
+                    + "                </li>\n"
+                    + "                \n"
+                    + "                <li class=\"nav-item\">\n"
+                    + "                    <a class=\"nav-link\" href=\"categoriaForm.html\">Crear Categoria</a>\n"
+                    + "                </li>\n"
+                    + "                \n"
+                    + "                <li class=\"nav-item\">\n"
+                    + "                    <a class=\"nav-link\" href=\"ProductoController?accion=listaDeProductos\">Listado de Productos</a>\n"
+                    + "                </li>\n"
+                    + "                \n"
+                    + "                <li class=\"nav-item\">\n"
+                    + "                    <a class=\"nav-link\" href=\"ProductoController?accion=nuevo\">Crear Producto</a>\n"
+                    + "                </li>\n"
+                    + "                \n"
+                    + "            </ul>\n"
+                    + "        </div>");
+            out.println("<br/>");
+            out.println("<br/>");
+
             out.println("<h1>Tablas De Multiplicar</h1>");
 
             out.println("<table class=\"table table-bordered border-primary\">");
@@ -65,10 +93,10 @@ public class TablasDeMultiplicar extends HttpServlet {
                 out.println("</tr>");
             }
             out.println("</table>");
-            
+
             out.println("<br/>");
-            out.println("<a href='/index.html'>Regresar</a>");
-            
+            out.println("<a href='index.html'>Regresar</a>");
+
             out.println("</center>");
             out.println("</div>");
             out.println("</body>");

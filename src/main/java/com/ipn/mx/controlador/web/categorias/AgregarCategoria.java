@@ -42,7 +42,7 @@ public class AgregarCategoria extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet AgregarCategoria</title>");            
+            out.println("<title>Agregar Categoria</title>");            
             out.println("</head>");
             out.println("<body>");
            

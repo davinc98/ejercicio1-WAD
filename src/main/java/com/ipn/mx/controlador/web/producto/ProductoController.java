@@ -45,7 +45,7 @@ public class ProductoController extends HttpServlet {
             listaDeProductos(request, response);
         } else {
             if (accion.equals("nuevo")) {
-//                nuevoProducto(request, response);
+                nuevoProducto(request, response);
             } else {
                 if (accion.equals("eliminar")) {
                     eliminarProducto(request, response);
@@ -86,17 +86,14 @@ public class ProductoController extends HttpServlet {
 
             out.println("<div class='container'>");
             
-            out.println("<br>");
-            
-            
-            
-            out.println("<div class=\"nav nav-pills nav-fill\">\n"
+            out.println("<br/>");
+            out.println(" <div class=\"nav nav-pills nav-fill\">\n"
                     + "            <ul class=\"nav justify-content-end\">\n"
                     + "                <li class=\"nav-item\">\n"
-                    + "                    <a class=\"nav-link active\" aria-current=\"page\" href=\"#\">Inicio</a>\n"
+                    + "                    <a class=\"nav-link \"  href=\"index.html\">Inicio</a>\n"
                     + "                </li>\n"
                     + "                <li class=\"nav-item\">\n"
-                    + "                    <a class=\"nav-link\" href=\"TablasDeMultiplicar\">Tablas de Multiplicar</a>\n"
+                    + "                    <a class=\"nav-link \"  href=\"TablasDeMultiplicar\">Tablas de Multiplicar</a>\n"
                     + "                </li>\n"
                     + "                <li class=\"nav-item\">\n"
                     + "                    <a class=\"nav-link\" href=\"MostrarDatosCategoria\">Listado de Categorias</a>\n"
@@ -105,10 +102,19 @@ public class ProductoController extends HttpServlet {
                     + "                <li class=\"nav-item\">\n"
                     + "                    <a class=\"nav-link\" href=\"categoriaForm.html\">Crear Categoria</a>\n"
                     + "                </li>\n"
+                    + "                \n"
+                    + "                <li class=\"nav-item\">\n"
+                    + "                    <a class=\"nav-link active\" aria-current=\"page\" href=\"ProductoController?accion=listaDeProductos\">Listado de Productos</a>\n"
+                    + "                </li>\n"
+                    + "                \n"
+                    + "                <li class=\"nav-item\">\n"
+                    + "                    <a class=\"nav-link\" href=\"ProductoController?accion=nuevo\">Crear Producto</a>\n"
+                    + "                </li>\n"
+                    + "                \n"
                     + "            </ul>\n"
                     + "        </div>");
-            
-            out.println("<br>");
+            out.println("<br/>");
+            out.println("<br/>");
             
             out.println("<h1> Lista de Productos</h1>");
             
