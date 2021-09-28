@@ -35,6 +35,7 @@ public class ProductoDTO implements Serializable{
         sb.append("Descripcion: ").append(getEntidad().getDescripcionProducto()).append("\n");
         sb.append("Precio: ").append(getEntidad().getPrecio()).append("\n");
         sb.append("Existencia: ").append(getEntidad().getExistencia()).append("\n");
+        sb.append("Stock Minimo: ").append(getEntidad().getStockMinimo()).append("\n");
         sb.append("Clave Categoria: ").append(getEntidad().getClaveCategoria()).append("\n");
         
         return sb.toString();

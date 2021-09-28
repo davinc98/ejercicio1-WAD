@@ -22,14 +22,14 @@ import java.util.logging.Logger;
  */
 public class ProductoDAO {
     
-    private static final String SQL_INSERT="insert into Producto(nombreProducto, descripcionProducto, precio, existencia, stockMinimo, claveCategoria)"
-            + "values (?,?,?,?,?,?)";
-    private static final String SQL_UPDATE="update Producto set nombreProducto=?, descripcionProducto=?, precio=?, existencia=?, stockMinimo=?, claveCategoria=? where idProducto=?";
-    private static final String SQL_DELETE="delete from Producto where idProducto where idProducto=?";
-    private static final String SQL_READ="select idProducto, nombreProducto, descripcionProducto, precio, existencia, stockMinimo, claveCategoria from Producto where idProducto=?";
+    private static final String SQL_INSERT="insert into Producto (nombreProducto, descripcionProducto, precio, existencia, stockMinimo, claveCategoria)"
+            + " values (?,?,?,?,?,?)";
+    private static final String SQL_UPDATE="update Producto set nombreProducto = ?, descripcionProducto = ?, precio = ?, existencia = ?, stockMinimo = ?, claveCategoria = ? where idProducto = ?";
+    private static final String SQL_DELETE="delete from Producto where idProducto = ?";
+    private static final String SQL_READ="select idProducto, nombreProducto, descripcionProducto, precio, existencia, stockMinimo, claveCategoria from Producto where idProducto = ?";
     private static final String SQL_READ_ALL="select idProducto, nombreProducto, descripcionProducto, precio, existencia, stockMinimo, claveCategoria from Producto";
     
-     private Connection conexion;
+    private Connection conexion;
     
     private void conectar(){
         String user = "postgres";
@@ -56,7 +56,10 @@ public class ProductoDAO {
             ps.setInt(4, dto.getEntidad().getExistencia());
             ps.setInt(5, dto.getEntidad().getStockMinimo());
             ps.setInt(6, dto.getEntidad().getClaveCategoria());
+            
             ps.executeUpdate();
+            
+            Logger.getLogger(CategoriaDAO.class.getName()).log(Level.INFO, null, "Almacenado correctamente");
         }finally{
             if(ps != null)
                 ps.close();

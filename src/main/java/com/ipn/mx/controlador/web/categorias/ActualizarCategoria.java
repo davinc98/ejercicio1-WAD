@@ -43,15 +43,54 @@ public class ActualizarCategoria extends HttpServlet {
             out.println("<html>");
             out.println("<head>");
             out.println("<title>Actualizar Categoria Form</title>");
+            
+            out.println("<link href='https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css' rel='stylesheet'>");
+            out.println("<script src='https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js'></script>");
+
+            out.println("<script src='https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js'></script>");
+            out.println("<script src='https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.min.js'></script>");
+
             out.println("</head>");
             out.println("<body>");
 
             out.println("<center>");
+            out.println("<div class='container'");
+            
+            out.println("<br/>");
+            out.println("<div class=\"nav nav-pills nav-fill\">\n" +
+"                    <ul class=\"nav justify-content-end\">\n" +
+"                        <li class=\"nav-item\">\n" +
+"                            <a class=\"nav-link\"  href=\"index.html\">Inicio</a>\n" +
+"                        </li>\n" +
+"                        <li class=\"nav-item\">\n" +
+"                            <a class=\"nav-link\" href=\"TablasDeMultiplicar\">Tablas de Multiplicar</a>\n" +
+"                        </li>\n" +
+"                        <li class=\"nav-item\">\n" +
+"                            <a class=\"nav-link\" href=\"MostrarDatosCategoria\">Listado de Categorias</a>\n" +
+"                        </li>\n" +
+"\n" +
+"                        <li class=\"nav-item\">\n" +
+"                            <a class=\"nav-link\" href=\"categoriaForm.html\">Crear Categoria</a>\n" +
+"                        </li>\n" +
+"\n" +
+"                        <li class=\"nav-item\">\n" +
+"                            <a class=\"nav-link\" href=\"ProductoController?accion=listaDeProductos\">Listado de Productos</a>\n" +
+"                        </li>\n" +
+"\n" +
+"                        <li class=\"nav-item\">\n" +
+"                            <a class=\"nav-link\" href=\"ProductoController?accion=nuevo\">Crear Producto</a>\n" +
+"                        </li>\n" +
+"\n" +
+"                    </ul>\n" +
+"                </div>");
+            out.println("<br/>");
+            out.println("<br/>");
             
             out.println("<h1>Actualizar Categoria</h1>");
             
             CategoriaDAO dao = new CategoriaDAO();
             CategoriaDTO dto = new CategoriaDTO();
+            
             dto.getEntidad().setIdCategoria(Integer.parseInt(request.getParameter("id")));
 
             try {
@@ -60,10 +99,9 @@ public class ActualizarCategoria extends HttpServlet {
                 Logger.getLogger(ActualizarCategoria.class.getName()).log(Level.SEVERE, null, ex);
             }
 
-            if (dto != null) {
+            if (dto != null) {          
 
-                out.println("<div class=\"container\">\n"
-                        + "            <form name=\"frmDatos\" method=\"post\" action=\"ActualizaCategoria\"> \n"
+                out.println("<form name=\"frmDatos\" method=\"post\" action=\"ActualizaCategoria\"> \n"
                         + "                Clave: \n"
                         + "                <input type=\"text\" name=\"txtClave\" value='"+dto.getEntidad().getIdCategoria()+"' readonly/><br/>\n"
                         + "                Nombre Categoria: \n"
@@ -71,13 +109,15 @@ public class ActualizarCategoria extends HttpServlet {
                         + "                Descripción de la categoria: \n"
                         + "                <input type=\"text\" name=\"txtDescripcion\" placeholder=\"Agrega una descripción\" value='"+dto.getEntidad().getDescripcionCategoria()+"' required/><br/>\n"
                         + "                <input type=\"submit\" value=\"Enviar\" name=\"btnEnviar\"/>\n"
-                        + "            </form>\n"
-                        + "</div>");
+                        + "            </form>\n");
+                
+                
                 
             } else {
                 out.println("Sin conincidencias.");
             }
 
+            out.println("</div>");
             out.println("</center>");
             out.println("</body>");
             out.println("</html>");
