@@ -9,6 +9,7 @@ import com.ipn.mx.modelo.dao.ProductoDAO;
 import com.ipn.mx.modelo.dto.ProductoDTO;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.math.BigDecimal;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.logging.Level;
@@ -182,7 +183,7 @@ public class ProductoController extends HttpServlet {
         RequestDispatcher rd = request.getRequestDispatcher("productoForm.html");
         try {
             rd.forward(request, response);
-            
+
         } catch (ServletException | IOException ex) {
             Logger.getLogger(ProductoController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -191,27 +192,27 @@ public class ProductoController extends HttpServlet {
 
     private void actualizarProducto(HttpServletRequest request, HttpServletResponse response) throws IOException {
         response.setContentType("text/html;charset=UTF-8");
-        
+
         try (PrintWriter out = response.getWriter()) {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
             out.println("<title>Actualizar Producto</title>");
-            
+
             out.println("<link href='https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css' rel='stylesheet'>");
             out.println("<script src='https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js'></script>");
-            
+
             out.println("<script src='https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js'></script>");
             out.println("<script src='https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.min.js'></script>");
-            
+
             out.println("</head>");
             out.println("<body>");
-            
+
             out.println("<div class='container'>");
             out.println("<center>");
-            
+
             out.println("<br>");
-            
+
             out.println("<div class=\"nav nav-pills nav-fill\">\n"
                     + "                    <ul class=\"nav justify-content-end\">\n"
                     + "                        <li class=\"nav-item\">\n"
@@ -238,24 +239,24 @@ public class ProductoController extends HttpServlet {
                     + "\n"
                     + "                    </ul>\n"
                     + "                </div>");
-            
+
             out.println("<br>");
-            
+
             out.println("<h1>Actualizar Producto</h1>");
-            
+
             String msg = "";
             ProductoDAO dao = new ProductoDAO();
             ProductoDTO dto = new ProductoDTO();
-            
+
             dto.getEntidad().setIdProducto(Integer.parseInt(request.getParameter("id")));
-            
+
             try {
                 dto = dao.read(dto);
-                Logger.getLogger(ProductoController.class.getName()).log(Level.SEVERE, null, "Producto encontrado: "+dto.getEntidad().toString());
+                Logger.getLogger(ProductoController.class.getName()).log(Level.SEVERE, null, "Producto encontrado: " + dto.getEntidad().toString());
             } catch (SQLException ex) {
                 Logger.getLogger(ProductoController.class.getName()).log(Level.SEVERE, null, ex);
             }
-            
+
             if (dto != null) {
                 out.println("<form name='frmData' method='post' action='ProductoController?accion=actualiza'>");
                 out.println("<table class='table table-striped>'>");
@@ -301,21 +302,21 @@ public class ProductoController extends HttpServlet {
                 out.println("<input type=\"submit\" value=\"Actualizar\" name=\"btnEnviar\"/>");
                 out.println("</form>");
             }
-            
+
             out.println("<br/>");
             out.println("<br/>");
             out.println("<div class='container'>");
             out.println("<a class='btn btn-success' href='ProductoController?accion=listaDeProductos'>Lista de Productos</a>");
             out.println("</div>");
-            
+
             out.println("</center>");
             out.println("</div>");
-            
+
             out.println("</body>");
             out.println("</html>");
         }
     }
-    
+
     private void actualizaProducto(HttpServletRequest request, HttpServletResponse response) throws IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
@@ -323,79 +324,79 @@ public class ProductoController extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Actualizacion Categoria</title>");   
-            
+            out.println("<title>Actualizacion Producto</title>");
+
             out.println("<link href='https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css' rel='stylesheet'>");
             out.println("<script src='https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js'></script>");
 
             out.println("<script src='https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js'></script>");
             out.println("<script src='https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.min.js'></script>");
-            
+
             out.println("</head>");
             out.println("<body>");
-            
+
             out.println("<center>");
             out.println("<div class='container'>");
-            
+
             out.println("<br/>");
-            out.println("<div class=\"nav nav-pills nav-fill\">\n" +
-"                    <ul class=\"nav justify-content-end\">\n" +
-"                        <li class=\"nav-item\">\n" +
-"                            <a class=\"nav-link\"  href=\"index.html\">Inicio</a>\n" +
-"                        </li>\n" +
-"                        <li class=\"nav-item\">\n" +
-"                            <a class=\"nav-link\" href=\"TablasDeMultiplicar\">Tablas de Multiplicar</a>\n" +
-"                        </li>\n" +
-"                        <li class=\"nav-item\">\n" +
-"                            <a class=\"nav-link\" href=\"MostrarDatosCategoria\">Listado de Categorias</a>\n" +
-"                        </li>\n" +
-"\n" +
-"                        <li class=\"nav-item\">\n" +
-"                            <a class=\"nav-link\" href=\"categoriaForm.html\">Crear Categoria</a>\n" +
-"                        </li>\n" +
-"\n" +
-"                        <li class=\"nav-item\">\n" +
-"                            <a class=\"nav-link\" href=\"ProductoController?accion=listaDeProductos\">Listado de Productos</a>\n" +
-"                        </li>\n" +
-"\n" +
-"                        <li class=\"nav-item\">\n" +
-"                            <a class=\"nav-link\" href=\"ProductoController?accion=nuevo\">Crear Producto</a>\n" +
-"                        </li>\n" +
-"\n" +
-"                    </ul>\n" +
-"                </div>");
+            out.println("<div class=\"nav nav-pills nav-fill\">\n"
+                    + "                    <ul class=\"nav justify-content-end\">\n"
+                    + "                        <li class=\"nav-item\">\n"
+                    + "                            <a class=\"nav-link\"  href=\"index.html\">Inicio</a>\n"
+                    + "                        </li>\n"
+                    + "                        <li class=\"nav-item\">\n"
+                    + "                            <a class=\"nav-link\" href=\"TablasDeMultiplicar\">Tablas de Multiplicar</a>\n"
+                    + "                        </li>\n"
+                    + "                        <li class=\"nav-item\">\n"
+                    + "                            <a class=\"nav-link\" href=\"MostrarDatosCategoria\">Listado de Categorias</a>\n"
+                    + "                        </li>\n"
+                    + "\n"
+                    + "                        <li class=\"nav-item\">\n"
+                    + "                            <a class=\"nav-link\" href=\"categoriaForm.html\">Crear Categoria</a>\n"
+                    + "                        </li>\n"
+                    + "\n"
+                    + "                        <li class=\"nav-item\">\n"
+                    + "                            <a class=\"nav-link\" href=\"ProductoController?accion=listaDeProductos\">Listado de Productos</a>\n"
+                    + "                        </li>\n"
+                    + "\n"
+                    + "                        <li class=\"nav-item\">\n"
+                    + "                            <a class=\"nav-link\" href=\"ProductoController?accion=nuevo\">Crear Producto</a>\n"
+                    + "                        </li>\n"
+                    + "\n"
+                    + "                    </ul>\n"
+                    + "                </div>");
             out.println("<br/>");
             out.println("<br/>");
-            
-            out.println("<h1>Actualizacion de Categoria</h1>");            
-            
+
+            out.println("<h1>Actualizacion de Producto</h1>");
+
             ProductoDAO dao = new ProductoDAO();
             ProductoDTO dto = new ProductoDTO();
             String msg = "";
-                        
+
             dto.getEntidad().setIdProducto(Integer.parseInt(request.getParameter("txtClaveProducto")));
             dto.getEntidad().setNombreProducto(request.getParameter("txtNombre"));
             dto.getEntidad().setDescripcionProducto(request.getParameter("txtDescripcion"));
-            dto.getEntidad().setPrecio(Double.parseDouble(request.getParameter("txtPrecio")));
+            dto.getEntidad().setPrecio(new BigDecimal(request.getParameter("txtPrecio")));
             dto.getEntidad().setExistencia(Integer.parseInt(request.getParameter("txtExistencia")));
             dto.getEntidad().setStockMinimo(Integer.parseInt(request.getParameter("txtStock")));
             dto.getEntidad().setClaveCategoria(Integer.parseInt(request.getParameter("txtClaveCategoria")));
-            
-            try{
+
+            try {
                 dao.update(dto);
-                msg="Registro actualizado";
-            }catch(SQLException ex){
+                msg = "Registro actualizado";
+            } catch (SQLException ex) {
                 Logger.getLogger(ProductoController.class.getName()).log(Level.SEVERE, null, ex);
             }
-            
+
             out.println("<div align='center'>");
-            out.println("<b>"+msg+"</b>");
-            out.println("<br/><a href=''>Listado de Categorias</a>");
+            out.println("<b>" + msg + "</b>");
+            out.println("<br/><a href='ProductoController?accion=listaDeProductos'>Listado de Productos</a>");
             out.println("</div>");
-            
+
             out.println("</div>");
             out.println("</center>");
-            
+
             out.println("</body>");
             out.println("</html>");
         }
@@ -404,19 +405,19 @@ public class ProductoController extends HttpServlet {
 
     private void verProducto(HttpServletRequest request, HttpServletResponse response) throws IOException {
         response.setContentType("text/html;charset=UTF-8");
-        
+
         try (PrintWriter out = response.getWriter()) {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
             out.println("<title>Ver Producto</title>");
-            
+
             out.println("<link href='https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css' rel='stylesheet'>");
             out.println("<script src='https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js'></script>");
-            
+
             out.println("<script src='https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js'></script>");
             out.println("<script src='https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.min.js'></script>");
-            
+
             out.println("</head>");
             out.println("<body>");
 
@@ -563,8 +564,6 @@ public class ProductoController extends HttpServlet {
             out.println("<br/>");
 
             out.println("<h1>Guardar Producto</h1>");
-            
-//            Logger.getLogger(ProductoController.class.getName()).log(Level.INFO, null, "ENTRA A GUARDAR PRODUCTO");
 
             String msg = "Error en la accion.";
             ProductoDAO dao = new ProductoDAO();
@@ -572,18 +571,15 @@ public class ProductoController extends HttpServlet {
 
             dto.getEntidad().setNombreProducto(request.getParameter("txtNombreProducto"));
             dto.getEntidad().setDescripcionProducto(request.getParameter("txtDescripcion"));
-            dto.getEntidad().setPrecio(Double.parseDouble(request.getParameter("txtPrecio")));
-//            dto.getEntidad().setExistencia(Integer.parseInt(request.getParameter("txtExistencia")));
-            dto.getEntidad().setExistencia(100);
+             dto.getEntidad().setExistencia(Integer.parseInt(request.getParameter("txtExistencia")));
+            dto.getEntidad().setPrecio(new BigDecimal(request.getParameter("txtPrecio")));           
             dto.getEntidad().setStockMinimo(Integer.parseInt(request.getParameter("txtStockMinimo")));
             dto.getEntidad().setClaveCategoria(Integer.parseInt(request.getParameter("txtClaveCategoria")));
 
-            
-
             try {
-                dao.create(dto);                
-                Logger.getLogger(ProductoController.class.getName()).log(Level.INFO, null, "Producto almacenado");
-                
+                dao.create(dto);
+//                Logger.getLogger(ProductoController.class.getName()).log(Level.INFO, null, "Producto almacenado");
+
                 msg = "Producto almacenado";
             } catch (SQLException ex) {
                 Logger.getLogger(ProductoController.class.getName()).log(Level.SEVERE, null, ex);
@@ -591,7 +587,7 @@ public class ProductoController extends HttpServlet {
 
             out.println("<div align='center'><br/>");
             out.println("<b>" + msg + "</b>");
-            out.println("<br/><a href=''>Listado de Productos</a>");
+            out.println("<br/><a href='ProductoController?accion=listaDeProductos'>Listado de Productos</a>");
             out.println("</div>");
 
             out.println("</div>");
@@ -637,34 +633,34 @@ public class ProductoController extends HttpServlet {
 
             out.println("<center>");
             out.println("<div class='container'>");
-            
+
             out.println("<br/>");
-            out.println("<div class=\"nav nav-pills nav-fill\">\n" +
-"                    <ul class=\"nav justify-content-end\">\n" +
-"                        <li class=\"nav-item\">\n" +
-"                            <a class=\"nav-link\"  href=\"index.html\">Inicio</a>\n" +
-"                        </li>\n" +
-"                        <li class=\"nav-item\">\n" +
-"                            <a class=\"nav-link\" href=\"TablasDeMultiplicar\">Tablas de Multiplicar</a>\n" +
-"                        </li>\n" +
-"                        <li class=\"nav-item\">\n" +
-"                            <a class=\"nav-link\" href=\"MostrarDatosCategoria\">Listado de Categorias</a>\n" +
-"                        </li>\n" +
-"\n" +
-"                        <li class=\"nav-item\">\n" +
-"                            <a class=\"nav-link\" href=\"categoriaForm.html\">Crear Categoria</a>\n" +
-"                        </li>\n" +
-"\n" +
-"                        <li class=\"nav-item\">\n" +
-"                            <a class=\"nav-link\" href=\"ProductoController?accion=listaDeProductos\">Listado de Productos</a>\n" +
-"                        </li>\n" +
-"\n" +
-"                        <li class=\"nav-item\">\n" +
-"                            <a class=\"nav-link\" href=\"ProductoController?accion=nuevo\">Crear Producto</a>\n" +
-"                        </li>\n" +
-"\n" +
-"                    </ul>\n" +
-"                </div>");
+            out.println("<div class=\"nav nav-pills nav-fill\">\n"
+                    + "                    <ul class=\"nav justify-content-end\">\n"
+                    + "                        <li class=\"nav-item\">\n"
+                    + "                            <a class=\"nav-link\"  href=\"index.html\">Inicio</a>\n"
+                    + "                        </li>\n"
+                    + "                        <li class=\"nav-item\">\n"
+                    + "                            <a class=\"nav-link\" href=\"TablasDeMultiplicar\">Tablas de Multiplicar</a>\n"
+                    + "                        </li>\n"
+                    + "                        <li class=\"nav-item\">\n"
+                    + "                            <a class=\"nav-link\" href=\"MostrarDatosCategoria\">Listado de Categorias</a>\n"
+                    + "                        </li>\n"
+                    + "\n"
+                    + "                        <li class=\"nav-item\">\n"
+                    + "                            <a class=\"nav-link\" href=\"categoriaForm.html\">Crear Categoria</a>\n"
+                    + "                        </li>\n"
+                    + "\n"
+                    + "                        <li class=\"nav-item\">\n"
+                    + "                            <a class=\"nav-link\" href=\"ProductoController?accion=listaDeProductos\">Listado de Productos</a>\n"
+                    + "                        </li>\n"
+                    + "\n"
+                    + "                        <li class=\"nav-item\">\n"
+                    + "                            <a class=\"nav-link\" href=\"ProductoController?accion=nuevo\">Crear Producto</a>\n"
+                    + "                        </li>\n"
+                    + "\n"
+                    + "                    </ul>\n"
+                    + "                </div>");
             out.println("<br/>");
             out.println("<br/>");
             out.println("<h3>");
@@ -672,7 +668,7 @@ public class ProductoController extends HttpServlet {
             out.println("</h3>");
             out.println("<br/>");
             out.println("<a class='btn btn-success' href='ProductoController?accion=listaDeProductos'>Lista de Productos</a>");
-            
+
             out.println("</center>");
             out.println("</div>");
 
@@ -681,8 +677,6 @@ public class ProductoController extends HttpServlet {
 
         }
     }
-    
-    
 
 // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**

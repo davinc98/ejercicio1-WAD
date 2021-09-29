@@ -6,6 +6,7 @@
 package com.ipn.mx.modelo.dao;
 
 import com.ipn.mx.modelo.dto.ProductoDTO;
+import java.math.BigDecimal;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -31,10 +32,24 @@ public class ProductoDAO {
     
     private Connection conexion;
     
+//    private void conectar(){
+//        String user = "postgres";
+//        String pwd = "admin";
+//        String url="jdbc:postgresql://localhost:5432/Base3CM13";
+//        String pgDriver = "org.postgresql.Driver";
+//        
+//        try{
+//            Class.forName(pgDriver);
+//            conexion = DriverManager.getConnection(url, user, pwd);
+//        }catch(Exception e){
+//            e.printStackTrace();
+//        }
+//    };
+    
     private void conectar(){
-        String user = "postgres";
-        String pwd = "admin";
-        String url="jdbc:postgresql://localhost:5432/Base3CM13";
+        String user = "iewcorrxmgvsmo";
+        String pwd = "a7750a2841c65540faa134f8c25978da1ea8dd72aaca9a853f0c30f2ac424fb7";
+        String url="jdbc:postgresql://ec2-44-198-24-0.compute-1.amazonaws.com:5432/d5luuaqm2h0rv1";
         String pgDriver = "org.postgresql.Driver";
         
         try{
@@ -44,6 +59,24 @@ public class ProductoDAO {
             e.printStackTrace();
         }
     };
+        
+        //SCRIPT DE BASE DE DATOS
+//        create table Categoria(
+//                idCategoria serial primary key,
+//                nombreCategoria varchar(50) not null,
+//                descripcionCategoria varchar(50) not null	
+//        );
+//
+//        create table Producto(
+//                idProducto serial primary key,
+//                nombreProducto varchar(50) not null,
+//                descripcionProducto varchar(50) not null,
+//                precio money not null,
+//                stockMinimo int not null,
+//                claveCategoria int not null,
+//                foreign key(claveCategoria) references Categoria(idCategoria) on update cascade on delete cascade
+//        );
+    
     
     public void create(ProductoDTO dto) throws SQLException{
         conectar();
@@ -52,7 +85,7 @@ public class ProductoDAO {
             ps = conexion.prepareStatement(SQL_INSERT);
             ps.setString(1, dto.getEntidad().getNombreProducto());
             ps.setString(2, dto.getEntidad().getDescripcionProducto());
-            ps.setDouble(3, dto.getEntidad().getPrecio());
+            ps.setBigDecimal(3, dto.getEntidad().getPrecio());
             ps.setInt(4, dto.getEntidad().getExistencia());
             ps.setInt(5, dto.getEntidad().getStockMinimo());
             ps.setInt(6, dto.getEntidad().getClaveCategoria());
@@ -76,7 +109,7 @@ public class ProductoDAO {
             ps = conexion.prepareStatement(SQL_UPDATE);
             ps.setString(1, dto.getEntidad().getNombreProducto());
             ps.setString(2, dto.getEntidad().getDescripcionProducto());
-            ps.setDouble(3, dto.getEntidad().getPrecio());
+            ps.setBigDecimal(3, dto.getEntidad().getPrecio());
             ps.setInt(4, dto.getEntidad().getExistencia());
             ps.setInt(5, dto.getEntidad().getStockMinimo());
             ps.setInt(6, dto.getEntidad().getClaveCategoria());
@@ -160,7 +193,7 @@ public class ProductoDAO {
             dto.getEntidad().setIdProducto(rs.getInt("idProducto"));
             dto.getEntidad().setNombreProducto(rs.getString("nombreProducto"));
             dto.getEntidad().setDescripcionProducto(rs.getString("descripcionProducto"));            
-            dto.getEntidad().setPrecio(rs.getDouble("precio"));
+            dto.getEntidad().setPrecio(rs.getBigDecimal("precio"));
             dto.getEntidad().setExistencia(rs.getInt("existencia"));
             dto.getEntidad().setStockMinimo(rs.getInt("stockMinimo"));
             dto.getEntidad().setClaveCategoria(rs.getInt("claveCategoria"));
@@ -174,12 +207,12 @@ public class ProductoDAO {
         ProductoDTO dto = new ProductoDTO();
         
         dto.getEntidad().setIdProducto(1);
-//        dto.getEntidad().setNombreProducto("Huawei");
-//        dto.getEntidad().setDescripcionProducto("Menos");
-//        dto.getEntidad().setPrecio(10000);
-//        dto.getEntidad().setExistencia(54);
-//        dto.getEntidad().setStockMinimo(10);
-//        dto.getEntidad().setClaveCategoria(1);
+        dto.getEntidad().setNombreProducto("Huawei");
+        dto.getEntidad().setDescripcionProducto("Menos");
+        dto.getEntidad().setPrecio(new BigDecimal(10000));
+        dto.getEntidad().setExistencia(54);
+        dto.getEntidad().setStockMinimo(10);
+        dto.getEntidad().setClaveCategoria(1);
         
         try {
             dao.create(dto);
