@@ -380,7 +380,7 @@ public class ProductoController extends HttpServlet {
             dto.getEntidad().setIdProducto(Integer.parseInt(request.getParameter("txtIdProducto")));
             dto.getEntidad().setNombreProducto(request.getParameter("txtNombre"));
             dto.getEntidad().setDescripcionProducto(request.getParameter("txtDescripcion"));
-            dto.getEntidad().setPrecio(new BigDecimal(request.getParameter("txtPrecio")));
+            dto.getEntidad().setPrecio(Float.parseFloat(request.getParameter("txtPrecio")));
             dto.getEntidad().setExistencia(Integer.parseInt(request.getParameter("txtExistencia")));
             dto.getEntidad().setStockMinimo(Integer.parseInt(request.getParameter("txtStock")));
             dto.getEntidad().setClaveCategoria(Integer.parseInt(request.getParameter("txtClaveCategoria")));
@@ -575,7 +575,7 @@ public class ProductoController extends HttpServlet {
             dto.getEntidad().setNombreProducto(request.getParameter("txtNombreProducto"));
             dto.getEntidad().setDescripcionProducto(request.getParameter("txtDescripcion"));
             dto.getEntidad().setExistencia(Integer.parseInt(request.getParameter("txtExistencia")));
-            dto.getEntidad().setPrecio(new BigDecimal(request.getParameter("txtPrecio")));
+            dto.getEntidad().setPrecio(Float.parseFloat(request.getParameter("txtPrecio")));
             dto.getEntidad().setStockMinimo(Integer.parseInt(request.getParameter("txtStockMinimo")));
             dto.getEntidad().setClaveCategoria(Integer.parseInt(request.getParameter("txtClaveCategoria")));
 

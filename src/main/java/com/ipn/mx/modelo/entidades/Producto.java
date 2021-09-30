@@ -19,7 +19,7 @@ public class Producto implements Serializable{
     private int idProducto;
     private String nombreProducto;
     private String descripcionProducto;
-    private BigDecimal precio;
+    private float precio;
     private int existencia;
     private int stockMinimo;
     private int claveCategoria;
@@ -51,11 +51,11 @@ public class Producto implements Serializable{
         this.descripcionProducto = descripcionProducto;
     }
 
-    public BigDecimal getPrecio() {
+    public float getPrecio() {
         return precio;
     }
 
-    public void setPrecio(BigDecimal precio) {
+    public void setPrecio(float precio) {
         this.precio = precio;
     }
 

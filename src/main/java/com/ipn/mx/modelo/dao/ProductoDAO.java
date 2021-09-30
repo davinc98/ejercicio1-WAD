@@ -87,7 +87,7 @@ public class ProductoDAO {
             ps = conexion.prepareStatement(SQL_INSERT);
             ps.setString(1, dto.getEntidad().getNombreProducto());
             ps.setString(2, dto.getEntidad().getDescripcionProducto());
-            ps.setBigDecimal(3, dto.getEntidad().getPrecio());
+            ps.setFloat(3, dto.getEntidad().getPrecio());
             ps.setInt(4, dto.getEntidad().getExistencia());
             ps.setInt(5, dto.getEntidad().getStockMinimo());
             ps.setInt(6, dto.getEntidad().getClaveCategoria());
@@ -111,7 +111,7 @@ public class ProductoDAO {
             ps = conexion.prepareStatement(SQL_UPDATE);
             ps.setString(1, dto.getEntidad().getNombreProducto());
             ps.setString(2, dto.getEntidad().getDescripcionProducto());
-            ps.setBigDecimal(3, dto.getEntidad().getPrecio());
+            ps.setFloat(3, dto.getEntidad().getPrecio());
             ps.setInt(4, dto.getEntidad().getExistencia());
             ps.setInt(5, dto.getEntidad().getStockMinimo());
             ps.setInt(6, dto.getEntidad().getClaveCategoria());
@@ -195,7 +195,7 @@ public class ProductoDAO {
             dto.getEntidad().setIdProducto(rs.getInt("idProducto"));
             dto.getEntidad().setNombreProducto(rs.getString("nombreProducto"));
             dto.getEntidad().setDescripcionProducto(rs.getString("descripcionProducto"));            
-            dto.getEntidad().setPrecio(rs.getBigDecimal("precio"));
+            dto.getEntidad().setPrecio(rs.getFloat("precio"));
             dto.getEntidad().setExistencia(rs.getInt("existencia"));
             dto.getEntidad().setStockMinimo(rs.getInt("stockMinimo"));
             dto.getEntidad().setClaveCategoria(rs.getInt("claveCategoria"));
@@ -211,7 +211,7 @@ public class ProductoDAO {
         dto.getEntidad().setIdProducto(1);
         dto.getEntidad().setNombreProducto("Huawei");
         dto.getEntidad().setDescripcionProducto("Menos");
-        dto.getEntidad().setPrecio(new BigDecimal(10000));
+        dto.getEntidad().setPrecio(1000);
         dto.getEntidad().setExistencia(54);
         dto.getEntidad().setStockMinimo(10);
         dto.getEntidad().setClaveCategoria(1);
