@@ -72,7 +72,7 @@ public class ProductoDAO {
                 idProducto serial primary key,
                 nombreProducto varchar(50) not null,
                 descripcionProducto varchar(50) not null,
-                precio money not null,
+                precio float not null,
                 existencia int not null,
                 stockMinimo int not null,
                 claveCategoria int not null,
