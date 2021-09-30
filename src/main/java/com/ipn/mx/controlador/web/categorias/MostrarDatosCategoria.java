@@ -102,7 +102,6 @@ public class MostrarDatosCategoria extends HttpServlet {
             CategoriaDAO dao = new CategoriaDAO();
             try {
                 List lista = dao.readAll();
-
                 for (int i = 0; i < lista.size(); i++) {
 
                     CategoriaDTO dto = (CategoriaDTO) lista.get(i);

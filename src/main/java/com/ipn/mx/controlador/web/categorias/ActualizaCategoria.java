@@ -95,6 +95,7 @@ public class ActualizaCategoria extends HttpServlet {
             dto.getEntidad().setIdCategoria(Integer.parseInt(request.getParameter("txtClave")));
             dto.getEntidad().setNombreCategoria(request.getParameter("txtNombre"));
             dto.getEntidad().setDescripcionCategoria(request.getParameter("txtDescripcion"));
+            
             try{
                 dao.update(dto);
                 msg="Registro actualizado";

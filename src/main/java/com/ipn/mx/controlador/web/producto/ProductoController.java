@@ -11,6 +11,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.math.BigDecimal;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -74,6 +75,7 @@ public class ProductoController extends HttpServlet {
 
     private void listaDeProductos(HttpServletRequest request, HttpServletResponse response) throws IOException {
         response.setContentType("text/html;charset=UTF-8");
+
         try (PrintWriter out = response.getWriter()) {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
@@ -128,7 +130,7 @@ public class ProductoController extends HttpServlet {
             out.println("<tr>");
             out.println("<td> Clave Producto </td>");
             out.println("<td> Nombre Producto </td>");
-            out.println("<td> Dscripcion  </td>");
+            out.println("<td> Descripcion  </td>");
             out.println("<td> Precio  </td>");
             out.println("<td> Existencias </td>");
             out.println("<td> Stock </td>");
@@ -138,14 +140,13 @@ public class ProductoController extends HttpServlet {
             out.println("</tr>");
             out.println("</thead>");
 
-            out.println("</div>");
-
             out.println("<tbody>");
 
             ProductoDAO dao = new ProductoDAO();
-
+            
             try {
                 List lista = dao.readAll();
+
                 for (int i = 0; i < lista.size(); i++) {
                     ProductoDTO dto = (ProductoDTO) lista.get(i);
 
@@ -167,6 +168,7 @@ public class ProductoController extends HttpServlet {
                 }
 
             } catch (SQLException ex) {
+                out.println("<h4>Ocurrio un error...</h4>");
                 Logger.getLogger(ProductoController.class.getName()).log(Level.SEVERE, null, ex);
             }
 
@@ -174,6 +176,7 @@ public class ProductoController extends HttpServlet {
 
             out.println("</table>");
 
+            out.println("</div>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -258,13 +261,13 @@ public class ProductoController extends HttpServlet {
             }
 
             if (dto != null) {
-                out.println("<form name='frmData' method='post' action='ProductoController?accion=actualiza'>");
+                out.println("<form name='frmDataAct' method='post' action='ProductoController?accion=actualiza'>");
                 out.println("<table class='table table-striped>'>");
                 out.println("<thead>");
                 out.println("<tr>");
                 out.println("<th> Clave Producto</th>");
-                out.println("<td><input type=\"number\" name=\"txtClaveProducto\" placeholder=\"Clave del producto\" "
-                        + "value = '" + dto.getEntidad().getIdProducto() + "' required readonly/></td>");
+                out.println("<td><input type=\"number\" name='txtIdProducto' placeholder=\"Clave del producto\" "
+                        + "value = '" + dto.getEntidad().getIdProducto() + "' required readonly='true'/></td>");
                 out.println("</tr>");
                 out.println("<tr>");
                 out.println("<th> Nombre Producto </th>");
@@ -374,7 +377,7 @@ public class ProductoController extends HttpServlet {
             ProductoDTO dto = new ProductoDTO();
             String msg = "";
 
-            dto.getEntidad().setIdProducto(Integer.parseInt(request.getParameter("txtClaveProducto")));
+            dto.getEntidad().setIdProducto(Integer.parseInt(request.getParameter("txtIdProducto")));
             dto.getEntidad().setNombreProducto(request.getParameter("txtNombre"));
             dto.getEntidad().setDescripcionProducto(request.getParameter("txtDescripcion"));
             dto.getEntidad().setPrecio(new BigDecimal(request.getParameter("txtPrecio")));
@@ -571,8 +574,8 @@ public class ProductoController extends HttpServlet {
 
             dto.getEntidad().setNombreProducto(request.getParameter("txtNombreProducto"));
             dto.getEntidad().setDescripcionProducto(request.getParameter("txtDescripcion"));
-             dto.getEntidad().setExistencia(Integer.parseInt(request.getParameter("txtExistencia")));
-            dto.getEntidad().setPrecio(new BigDecimal(request.getParameter("txtPrecio")));           
+            dto.getEntidad().setExistencia(Integer.parseInt(request.getParameter("txtExistencia")));
+            dto.getEntidad().setPrecio(new BigDecimal(request.getParameter("txtPrecio")));
             dto.getEntidad().setStockMinimo(Integer.parseInt(request.getParameter("txtStockMinimo")));
             dto.getEntidad().setClaveCategoria(Integer.parseInt(request.getParameter("txtClaveCategoria")));
 
