@@ -104,8 +104,12 @@ public class ActualizaCategoria extends HttpServlet {
             }
             
             out.println("<div align='center'>");
-            out.println("<b>"+msg+"</b>");
-            out.println("<br/><a href=''>Listado de Categorias</a>");
+            out.println("<br/>");
+            out.println("<h3 style='color: green'>");
+            out.println(msg);
+            out.println("</h3>");
+            out.println("<br/>");
+            out.println("<br/><a class='btn btn-primary' href='MostrarDatosCategoria'>Listado de Categorias</a>");
             out.println("</div>");
             
             out.println("</div>");

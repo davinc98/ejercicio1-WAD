@@ -101,7 +101,12 @@ public class ActualizarCategoria extends HttpServlet {
 
             if (dto != null) {          
 
-                out.println("<form name=\"frmDatos\" method=\"post\" action=\"ActualizaCategoria\"> \n"
+                out.println("<div class=\"card\" style=\"width: 30rem;\">\n" +
+"                    <div class=\"card-header\">\n" +
+"                        Datos categoria\n" +
+"                    </div>\n" +
+"                    <div class=\"card-body\">"
+                        + "<form name=\"frmDatos\" method=\"post\" action=\"ActualizaCategoria\"> \n"
                         + "                Clave: \n"
                         + "                <input type=\"text\" name=\"txtClave\" value='"+dto.getEntidad().getIdCategoria()+"' readonly/><br/>\n"
                         + "                Nombre Categoria: \n"
@@ -109,7 +114,10 @@ public class ActualizarCategoria extends HttpServlet {
                         + "                Descripción de la categoria: \n"
                         + "                <input type=\"text\" name=\"txtDescripcion\" placeholder=\"Agrega una descripción\" value='"+dto.getEntidad().getDescripcionCategoria()+"' required/><br/>\n"
                         + "                <input type=\"submit\" value=\"Enviar\" name=\"btnEnviar\"/>\n"
-                        + "            </form>\n");
+                        + "            </form>\n"
+                                + ""
+                                + "</div>\n" +
+"                </div>");
                 
                 
                 

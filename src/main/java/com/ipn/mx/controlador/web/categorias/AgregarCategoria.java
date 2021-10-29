@@ -55,6 +55,7 @@ public class AgregarCategoria extends HttpServlet {
             
             out.println("<center>");
             out.println("<div class='container'");
+            out.println("<h2>Agregar Categoria</h2>");
             
             out.println("<br/>");
             out.println("<div class=\"nav nav-pills nav-fill\">\n" +
@@ -100,8 +101,12 @@ public class AgregarCategoria extends HttpServlet {
                 Logger.getLogger(AgregarCategoria.class.getName()).log(Level.SEVERE, null, ex);
             }
             out.println("<div align='center'><br/>");
-            out.println("<b>"+msg+"</b>");
-            out.println("<a href=''>Listado de Categorias</a>");
+            out.println("<br/>");
+            out.println("<h3 style='color: green'>");
+            out.println(msg);
+            out.println("</h3>");
+            out.println("<br/>");
+            out.println("<br/><a class='btn btn-info' href='MostrarDatosCategoria'>Listado de Categorias</a>");
             out.println("</div>");
             
             out.println("</div>");

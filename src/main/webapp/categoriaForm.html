@@ -18,48 +18,63 @@ and open the template in the editor.
     </head>
     <body>
     <center>
-        
+
         <div class="container">
-        <br/>
-        <div class="nav nav-pills nav-fill">
-            <ul class="nav justify-content-end">
-                <li class="nav-item">
-                    <a class="nav-link"  href="index.html">Inicio</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="TablasDeMultiplicar">Tablas de Multiplicar</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="MostrarDatosCategoria">Listado de Categorias</a>
-                </li>
-                
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="categoriaForm.html">Crear Categoria</a>
-                </li>
-                
-                <li class="nav-item">
-                    <a class="nav-link" href="ProductoController?accion=listaDeProductos">Listado de Productos</a>
-                </li>
-                
-                <li class="nav-item">
-                    <a class="nav-link" href="ProductoController?accion=nuevo">Crear Producto</a>
-                </li>
-                
-            </ul>
-        </div>
-        
-        <br/>
-        <br/>
-        <h1>Crear Categoria</h1>
-        
-            <form name="frmDatos" method="post" action="AgregarCategoria"> 
-                Nombre Categoria: 
-                <input type="text" name="txtNombre" placeholder="Pon tu nombre aqui" required/><br/>
-                Descripción de la categoria: 
-                <input type="text" name="txtDescripcion" placeholder="Agrega una descripción" required/><br/>
-                <input type="submit" value="Enviar" name="btnEnviar"/>
-            </form>
+            <br/>
+            <div class="nav nav-pills nav-fill">
+                <ul class="nav justify-content-end">
+                    <li class="nav-item">
+                        <a class="nav-link"  href="index.html">Inicio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="TablasDeMultiplicar">Tablas de Multiplicar</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="MostrarDatosCategoria">Listado de Categor&iacute;a</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="categoriaForm.html">Crear Categor&iacute;a</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="ProductoController?accion=listaDeProductos">Listado de Productos</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="ProductoController?accion=nuevo">Crear Producto</a>
+                    </li>
+
+                </ul>
+            </div>
+
+            <br/>
+            <br/>
+            <h1>Crear Categor&iacute;a</h1>
+            <br/>
+
             
+            <form name="frmDatos" method="post" action="AgregarCategoria"> 
+                <div class="card" style="width: 30rem;">
+                    <div class="card-header">
+                        Datos categoria
+                    </div>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">
+                            Nombre Categoria: 
+                            <input type="text" name="txtNombre" placeholder="Nombre de la categoria" required/><br/>
+                        </li>
+                        <li class="list-group-item">
+                            Descripción de la categoria: 
+                            <input type="text" name="txtDescripcion" placeholder="Agrega una descripción" required/><br/>
+                        </li>
+                        <li class="list-group-item">
+                            <input type="submit" value="Guardar" name="btnEnviar"/>
+                        </li>
+                    </ul>
+                </div>
+            </form>
+
         </div>
     </center>
 </body>

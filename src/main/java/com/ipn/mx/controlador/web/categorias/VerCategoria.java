@@ -86,7 +86,7 @@ public class VerCategoria extends HttpServlet {
             out.println("<br/>");
             out.println("<br/>");
             
-            out.println("<h1>Categoria</h1>");
+            out.println("<h1>Datos Categoria</h1>");
             String msg = "";
             CategoriaDAO dao = new CategoriaDAO();
             CategoriaDTO dto = new CategoriaDTO();
@@ -98,17 +98,25 @@ public class VerCategoria extends HttpServlet {
                 Logger.getLogger(VerCategoria.class.getName()).log(Level.SEVERE, null, ex);
             }
 
+            out.println("<div class=\"card\" style=\"width: 18rem;\">");
+            out.println("<div class=\"card-header\">\n" +
+"    Categoria\n" +
+"  </div>");
             if (dto != null) {
-                out.println("<ol>");
-                out.println("<li> Clave Categoria: " + dto.getEntidad().getIdCategoria() + "</li>");
-                out.println("<li> Nombre Categoria:" + dto.getEntidad().getNombreCategoria() + "</li>");
-                out.println("<li> Descrpcion: " + dto.getEntidad().getDescripcionCategoria() + "</li>");
-                out.println("</ol>");
+                
+                out.println("<ul class=\"list-group list-group-flush\">");
+                out.println("<li class=\"list-group-item\"> Clave Categoria: " + dto.getEntidad().getIdCategoria() + "</li>");
+                out.println("<li class=\"list-group-item\"> Nombre Categoria: " + dto.getEntidad().getNombreCategoria() + "</li>");
+                out.println("<li class=\"list-group-item\"> Descrpcion: " + dto.getEntidad().getDescripcionCategoria() + "</li>");
+                out.println("</ul>");
 
             }
+            out.println("</div>");
+
+            
             out.println("<div align='center'>");
-            out.println("<b>"+msg+"</b>");
-            out.println("<a href=''>Listado de Categorias</a>");
+            out.println("<b>"+msg+"</b><br>");
+            out.println("<a class='btn btn-primary' href='MostrarDatosCategoria'>Listado de Categorias</a>");
             out.println("</div>");
             
 

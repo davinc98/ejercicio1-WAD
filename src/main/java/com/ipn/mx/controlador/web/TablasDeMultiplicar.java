@@ -80,8 +80,13 @@ public class TablasDeMultiplicar extends HttpServlet {
             out.println("<br/>");
             out.println("<br/>");
 
-            out.println("<h1>Tablas De Multiplicar</h1>");
-
+            out.println("<div class=\"col-sm-10\">\n" +
+"                    <div class=\"card text-center\">\n" +
+"                        <div class=\"card-header\">\n" +
+"                            <h1>Tablas De Multiplicar</h1>\n" +
+"                        </div>\n" +
+"                        <div class=\"card-body\">\n");
+            
             out.println("<table class=\"table table-bordered border-primary\">");
             for (int i = 1; i <= 10; i++) {
                 out.println("<tr>");
@@ -93,9 +98,16 @@ public class TablasDeMultiplicar extends HttpServlet {
                 out.println("</tr>");
             }
             out.println("</table>");
+            
+            out.println("  </div>\n" +
+"                    </div>\n" +
+"                </div>");
+
+
+            
 
             out.println("<br/>");
-            out.println("<a href='index.html'>Regresar</a>");
+            out.println("<a class='btn btn-info' href='index.html'>Regresar</a>");
 
             out.println("</center>");
             out.println("</div>");

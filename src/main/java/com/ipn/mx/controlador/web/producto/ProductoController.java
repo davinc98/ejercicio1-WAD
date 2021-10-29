@@ -5,7 +5,9 @@
  */
 package com.ipn.mx.controlador.web.producto;
 
+import com.ipn.mx.modelo.dao.CategoriaDAO;
 import com.ipn.mx.modelo.dao.ProductoDAO;
+import com.ipn.mx.modelo.dto.CategoriaDTO;
 import com.ipn.mx.modelo.dto.ProductoDTO;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -123,6 +125,7 @@ public class ProductoController extends HttpServlet {
             out.println("<br/>");
             out.println("<br/>");
 
+            out.println("<center>");
             out.println("<h1> Lista de Productos</h1>");
 
             out.println("<table class='table table-striped>'>");
@@ -143,7 +146,7 @@ public class ProductoController extends HttpServlet {
             out.println("<tbody>");
 
             ProductoDAO dao = new ProductoDAO();
-            
+
             try {
                 List lista = dao.readAll();
 
@@ -176,14 +179,19 @@ public class ProductoController extends HttpServlet {
 
             out.println("</table>");
 
+            out.println("<br/>"
+                    + "<a href='productoForm.jsp' class='btn btn-primary'> Agregar Producto </a>");
+
+            out.println("</center>");
             out.println("</div>");
+            out.println("<br/><br/>");
             out.println("</body>");
             out.println("</html>");
         }
     }
 
     private void nuevoProducto(HttpServletRequest request, HttpServletResponse response) {
-        RequestDispatcher rd = request.getRequestDispatcher("productoForm.html");
+        RequestDispatcher rd = request.getRequestDispatcher("productoForm.jsp");
         try {
             rd.forward(request, response);
 
@@ -261,6 +269,7 @@ public class ProductoController extends HttpServlet {
             }
 
             if (dto != null) {
+                out.println("<div class=\"col-sm-6\">");
                 out.println("<form name='frmDataAct' method='post' action='ProductoController?accion=actualiza'>");
                 out.println("<table class='table table-striped>'>");
                 out.println("<thead>");
@@ -296,20 +305,38 @@ public class ProductoController extends HttpServlet {
                 out.println("</tr>");
                 out.println("<tr>");
                 out.println("<th> Categoria </th>");
-                out.println("<td><input type=\"number\" name=\"txtClaveCategoria\" placeholder=\"Precio del producto\" "
-                        + "value = '" + dto.getEntidad().getClaveCategoria() + "'required/></td>");
+
+//                out.println("<td><input type=\"number\" name=\"txtClaveCategoria\" placeholder=\"Precio del producto\" "
+//                        + "value = '" + dto.getEntidad().getClaveCategoria() + "'required/></td>");
+
+                CategoriaDAO daocat = new CategoriaDAO();
+                List categorias = daocat.readAll();
+
+                out.println("<td><select name=\"txtClaveCategoria\" id=\"txtClaveCategoria\" placeholder=\"Clave de la categoria\" required>");
+                for (int i = 0; i < categorias.size(); i++) {
+                    CategoriaDTO cat = (CategoriaDTO) categorias.get(i);
+                    
+                    if(cat.getEntidad().getIdCategoria()==dto.getEntidad().getClaveCategoria())
+                        out.println("<option value='"+cat.getEntidad().getIdCategoria()+"' selected='true'>"+cat.getEntidad().getNombreCategoria()+"</option>");
+                    else
+                        out.println("<option value='"+cat.getEntidad().getIdCategoria()+"'>"+cat.getEntidad().getNombreCategoria()+"</option>");
+
+                }
+                out.println("</select></td>");
+
                 out.println("</tr>");
                 out.println("<tr>");
                 out.println("</table>");
                 out.println("<br/>");
                 out.println("<input type=\"submit\" value=\"Actualizar\" name=\"btnEnviar\"/>");
                 out.println("</form>");
+                out.println("</div>");
             }
 
             out.println("<br/>");
             out.println("<br/>");
             out.println("<div class='container'>");
-            out.println("<a class='btn btn-success' href='ProductoController?accion=listaDeProductos'>Lista de Productos</a>");
+            out.println("<a class='btn btn-primary' href='ProductoController?accion=listaDeProductos'>Lista de Productos</a>");
             out.println("</div>");
 
             out.println("</center>");
@@ -317,6 +344,8 @@ public class ProductoController extends HttpServlet {
 
             out.println("</body>");
             out.println("</html>");
+        } catch (SQLException ex) {
+            Logger.getLogger(ProductoController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -393,8 +422,12 @@ public class ProductoController extends HttpServlet {
             }
 
             out.println("<div align='center'>");
-            out.println("<b>" + msg + "</b>");
-            out.println("<br/><a href='ProductoController?accion=listaDeProductos'>Listado de Productos</a>");
+            out.println("<br/>");
+            out.println("<h3 style='color: green'>");
+            out.println(msg);
+            out.println("</h3>");
+            out.println("<br/>");
+            out.println("<br/><a class='btn btn-primary' href='ProductoController?accion=listaDeProductos'>Listado de Productos</a>");
             out.println("</div>");
 
             out.println("</div>");
@@ -506,7 +539,7 @@ public class ProductoController extends HttpServlet {
             }
 
             out.println("<div class='container'>");
-            out.println("<a class='btn btn-success' href='ProductoController?accion=listaDeProductos'>Lista de Productos</a>");
+            out.println("<a class='btn btn-primary' href='ProductoController?accion=listaDeProductos'>Lista de Productos</a>");
             out.println("</div>");
 
             out.println("</body>");
@@ -579,9 +612,9 @@ public class ProductoController extends HttpServlet {
             dto.getEntidad().setStockMinimo(Integer.parseInt(request.getParameter("txtStockMinimo")));
             dto.getEntidad().setClaveCategoria(Integer.parseInt(request.getParameter("txtClaveCategoria")));
 
+
             try {
                 dao.create(dto);
-//                Logger.getLogger(ProductoController.class.getName()).log(Level.INFO, null, "Producto almacenado");
 
                 msg = "Producto almacenado";
             } catch (SQLException ex) {
@@ -589,8 +622,12 @@ public class ProductoController extends HttpServlet {
             }
 
             out.println("<div align='center'><br/>");
-            out.println("<b>" + msg + "</b>");
-            out.println("<br/><a href='ProductoController?accion=listaDeProductos'>Listado de Productos</a>");
+            out.println("<br/>");
+            out.println("<h3 style='color: green'>");
+            out.println(msg);
+            out.println("</h3>");
+            out.println("<br/>");
+            out.println("<br/><a class='btn btn-primary' href='ProductoController?accion=listaDeProductos'>Listado de Productos</a>");
             out.println("</div>");
 
             out.println("</div>");
@@ -666,7 +703,7 @@ public class ProductoController extends HttpServlet {
                     + "                </div>");
             out.println("<br/>");
             out.println("<br/>");
-            out.println("<h3>");
+            out.println("<h3 style='color: green'>");
             out.println(msg);
             out.println("</h3>");
             out.println("<br/>");
